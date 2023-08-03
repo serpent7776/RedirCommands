@@ -10,20 +10,20 @@ execute "command! -nargs=1 " . g:redircommands_newbuffer_command . " call call(f
 " }}}
 " {{{ Redir()
 function! <sid>Redir(args)
-    let a:command = substitute(a:args, " \\+[^ ]*$", "", "")
-    let a:to      = substitute(a:args, "^.* ", "", "")
-    exe 'redir ' . a:to
-    silent execute a:command
+    let l:command = substitute(a:args, " \\+[^ ]*$", "", "")
+    let l:to      = substitute(a:args, "^.* ", "", "")
+    exe 'redir ' . l:to
+    silent execute l:command
     redir END
 endfunction
 " }}}
 " {{{ RedirToNewBuffer()
 function! <sid>RedirToNewBuffer(command)
-    exe 'redir =>a:output'
+    exe 'redir =>l:output'
     silent exe a:command
     redir END
     new
-    silent put =a:output
+    silent put =l:output
     1d
     1d
     setlocal bufhidden=delete
