@@ -24,8 +24,7 @@ function! <sid>RedirToNewBuffer(command)
     redir END
     new
     silent put =l:output
-    1d
-    1d
+    1,2d
     setlocal bufhidden=delete
     setlocal noswapfile
     let fname = "R\\ Output\\ [" . substitute(a:command, '\([ 	]\)', '\\\1', 'g') . "]"
